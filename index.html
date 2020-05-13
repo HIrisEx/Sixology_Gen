@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="六学体生成器" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>六学体生成器</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dkwingsmt/haha">View on GitHub</a>
+
+          <h1 id="project_title">六学体生成器</h1>
+          <h2 id="project_tagline">水表在屋外，最近没网购，不需社区温暖，谢谢。</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+          <table style="width:768px">
+              <tr>
+                  <th style="width:50%;">
+          <!--<h3>请依次填入以下信息……</h3>-->
+    <form name="info_form">
+    <p>标题：
+        <input type="text" name="i_from" value="" style="width:100px;" /> 
+        章口就莱
+    </p>
+    <p>正文</p>
+    <ol>
+        <li>
+            <input type="text" name="i_ada1" value="" style="width:150px;" />
+            <input type="text" name="i_ada2" value="" style="width:150px;" /> 
+            <input type="text" name="i_ada3" value="" style="width:150px;" /> 
+            <input type="text" name="i_ada4" value="" style="width:150px;" /> </li><li>
+            <input type="text" name="i_perf" value="" style="width:150px;" /> 
+            <input type="text" name="i_die1" value="" style="width:150px;" /> 
+            <input type="text" name="i_do" value="" style="width:150px;" /> 
+            <input type="text" name="i_die2" value="" style="width:150px;" /> </li><li>
+            <input type="text" name="i_howmany" value="" style="width:150px;" /> 
+            <input type="text" name="i_iwk" value="" style="width:150px;" /> 
+            <input type="text" name="i_bgj" value="" style="width:150px;" /> 
+            <input type="text" name="i_ry" value="" style="width:150px;" /> 
+            <input type="text" name="i_sf" value="" style="width:150px;" /> 
+            <input type="text" name="i_shyx" value="" style="width:150px;" />
+            <input type="text" name="i_sjmz" value="" style="width:150px;" />
+            <input type="text" name="i_zc" value="" style="width:150px;" />
+            <input type="text" name="i_bgr" value="" style="width:150px;" /></li><li>
+            <input type="text" name="i_yynn" value="" style="width:150px;" />
+            <input type="text" name="i_xyj" value="" style="width:150px;" /></li><li>
+            <input type="text" name="i_timed" value="" style="width:150px;" /> 
+            <input type="text" name="i_hos" value="" style="width:150px;" /> 
+            <input type="text" name="i_ts" value="" style="width:150px;" /> 
+            <input type="text" name="i_sv" value="" style="width:150px;" /> 
+            <input type="text" name="i_si" value="" style="width:150px;" /> 
+            <input type="text" name="i_thd" value="" style="width:150px;" /></li><li> 
+            <input type="text" name="i_job" value="" style="width:150px;" /> </li><li> 
+            <input type="text" name="i_watch" value="" style="width:150px;" /> 
+            <input type="text" name="i_gjyx" value="" style="width:150px;" /> 
+        </li>
+    </ol>
+    <input type="button" name="button" value="生成" onclick="generate()" style="width:100px;" />
+    </form>
+              </th>
+              <th style="width:49%">
+        <textarea name="result" id="result" readonly="readonly" style="width:100%; height: 600px;"/>
+        </textarea>
+              </th>
+              </tr>
+          </table>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">六学体生成器 maintained by <a href="https://github.com/HIrisEx">HIrisEx</a></p>
+        <p>Inspired by <a href="https://github.com/dkwingsmt/haha">蛤蛤体生成器</a></p>
+      </footer>
+    </div>
+
+    <script>
+
+function get_inputs() {
+    return document.querySelectorAll("form > p > input, form > ol > li > input");
+}
+
+var init_arrays = [];
+
+init_arrays.push({
+    i_from: "章老师",
+    i_ada1: "戏说",
+    i_ada2: "胡说",
+    i_ada3: "改编",
+    i_ada4: "乱编",
+    i_perf: "演吴承恩",
+    i_die1: "他28岁",
+    i_do: "演到",
+    i_die2: "他82岁去世",
+    i_howmany: "孙悟空在取经的路上到底有几个女妖精的朋友呀？",
+    i_iwk: "孙悟空",
+    i_bgj: "白骨精",
+    i_ry: "人妖",
+    i_sf: "是非",
+    i_shyx: "神话英雄",
+    i_sjmz: "世界名著",
+    i_zc: "剧的主创人员、导演",
+    i_bgr: "本国人民",
+    i_yynn: "爷爷奶奶",
+    i_xyj: "《西游记》",
+    i_timed: "十七年",
+    i_hos: "医院拍了25个片子",
+    i_ts: "唐僧取经",
+    i_sv: "片子70元",
+    i_si: "拍了6年",
+    i_thd: "2000元",
+    i_job: "演孙悟空",
+    i_watch: "我这版西游记一集都没有看过",
+    i_gjyx: "国际影星"
+});
+
+
+function initialize(init_array) {
+
+    var inputs = get_inputs();
+    for(var i = 0; i < inputs.length; i++) {
+        inputs[i].value = init_array[inputs[i].name];
+    }
+    generate();
+}
+
+function generate() {
+    var inputs = get_inputs();
+    var result_text = result;
+    var template = "";
+    template += "{{i_from}}：{{i_ada1}}不是{{i_ada2}}，{{i_ada3}}不是{{i_ada4}}。 \n\n";
+    template += "{{i_from}}：我{{i_perf}}，从{{i_die1}}{{i_do}}{{i_die2}}，我太了解他了！ \n";
+    template += "我刚进来的时候，有个小朋友就问我：{{i_from}}，{{i_howmany}}年轻的学生还在笑，我是笑不出来啊，眼泪在肚里流。{{i_iwk}}怎么和{{i_bgj}}谈恋爱呢？{{i_ry}}不分、{{i_sf}}颠倒，有意思吗？年轻人还在笑，像这样一个{{i_shyx}}，{{i_sjmz}}，如果如此恶搞，那么这个{{i_zc}}需要向{{i_bgr}}谢罪的。要恶搞，回去恶搞你{{i_yynn}}爷爷奶奶去，别恶搞{{i_xyj}}！\n\n"
+    template +="{{i_from}}：我是身经百战见得多了，我{{i_timed}}内去{{i_hos}}，比{{i_ts}}的时间还长，每个{{i_sv}}，{{i_si}}，总共不到{{i_thd}}。\n\n"
+    template += "{{i_from}}：你说你{{i_job}}比我好，有本事上台比划比划。\n\n"
+    template += "{{i_from}}：今年下半年 ，中外合拍的电影西游记即将正式开机，我继续扮演美猴王孙悟空。我会用美猴王艺术形象，努力创造一个让杨洁导演和海内外观众满意的新的荧幕形象，来告慰我们的杨洁导演。杨洁导演 一路走好。\n\n"
+    template += "{{i_from}}：到场的有上万人，我问在座的每一位同学老师小朋友 ，{{i_watch}}的请举手，没有一个人举手，什么叫{{i_gjyx}}啊？"
+    for (var i = 0; i < inputs.length; i++) {
+        var regexp = new RegExp("\{\{"+inputs[i].name+"\}\}", "g");
+        template = template.replace(regexp, inputs[i].value, "g");
+    }
+    result_text.value = template;
+}
+
+initialize(init_arrays[Math.floor(Math.random() * init_arrays.length)]);
+    </script>
+
+  </body>
+</html>
